@@ -79,7 +79,7 @@ local plugins = {
 
    -- lsp stuff
 
-   ["williamboman/nvim-lsp-installer"] = {
+   ["yesean/nvim-lsp-installer"] = {
       opt = true,
       setup = function()
          require("core.utils").packer_lazy_load "nvim-lsp-installer"

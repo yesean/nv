@@ -13,6 +13,7 @@ M.bootstrap = function()
 
       -- install plugins + compile their configs
       vim.cmd "packadd packer.nvim"
+      require("packer").init { display = { non_interactive = true } }
       require "plugins"
       vim.cmd "PackerSync"
    end
