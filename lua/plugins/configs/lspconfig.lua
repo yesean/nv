@@ -1,4 +1,5 @@
 local present, lspconfig = pcall(require, "lspconfig")
+local servers = require "plugins.configs.servers"
 
 if not present then
    return
@@ -9,7 +10,7 @@ local utils = require "core.utils"
 
 require("plugins.configs.others").lsp_handlers()
 
--- Borders for LspInfo winodw
+-- Borders for LspInfo window
 local win = require "lspconfig.ui.windows"
 local _default_opts = win.default_opts
 
@@ -47,26 +48,16 @@ capabilities.textDocument.completion.completionItem = {
    },
 }
 
-lspconfig.sumneko_lua.setup {
-   on_attach = M.on_attach,
-   capabilities = capabilities,
+for name, config in pairs(servers) do
+   local opts = {
+      on_attach = M.on_attach,
+      capabilities = capabilities,
+   }
+   vim.tbl_deep_extend("force", opts, config)
 
-   settings = {
-      Lua = {
-         diagnostics = {
-            globals = { "vim" },
-         },
-         workspace = {
-            library = {
-               [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-               [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-            },
-            maxPreload = 100000,
-            preloadFileSize = 10000,
-         },
-      },
-   },
-}
+   print("setting up lsp:", name)
+   lspconfig[name].setup(opts)
+end
 
 -- requires a file containing user's lspconfigs
 local addlsp_confs = utils.load_config().plugins.options.lspconfig.setup_lspconf
