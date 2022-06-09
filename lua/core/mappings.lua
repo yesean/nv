@@ -26,31 +26,13 @@ M.general = {
       ["<ESC>"] = { "<cmd> noh <CR>", "  no highlight" },
 
       -- switch between windows
-      ["<C-h>"] = { "<C-w>h", " window left" },
-      ["<C-l>"] = { "<C-w>l", " window right" },
-      ["<C-j>"] = { "<C-w>j", " window down" },
-      ["<C-k>"] = { "<C-w>k", " window up" },
-
-      -- save
-      ["<C-s>"] = { "<cmd> w <CR>", "﬚  save file" },
-
-      -- Copy all
-      ["<C-c>"] = { "<cmd> %y+ <CR>", "  copy whole file" },
-
-      -- line numbers
-      ["<leader>n"] = { "<cmd> set nu! <CR>", "   toggle line number" },
-      ["<leader>rn"] = { "<cmd> set rnu! <CR>", "   toggle relative number" },
+      ["<leader>h"] = { "<C-w>h", " window left" },
+      ["<leader>l"] = { "<C-w>l", " window right" },
+      ["<leader>j"] = { "<C-w>j", " window down" },
+      ["<leader>k"] = { "<C-w>k", " window up" },
 
       -- update nvchad
       ["<leader>uu"] = { "<cmd> :NvChadUpdate <CR>", "  update nvchad" },
-
-      ["<leader>tt"] = {
-         function()
-            require("base46").toggle_theme()
-         end,
-
-         "   toggle theme",
-      },
    },
 
    t = {
@@ -69,7 +51,7 @@ M.bufferline = {
       ["<S-Tab>"] = { "<cmd> BufferLineCyclePrev <CR>", "  cycle prev buffer" },
 
       -- close buffer + hide terminal buffer
-      ["<leader>x"] = {
+      ["<c-\\>"] = {
          function()
             require("core.utils").close_buffer()
          end,
@@ -131,7 +113,7 @@ M.lspconfig = {
          "   lsp implementation",
       },
 
-      ["<leader>ls"] = {
+      ["<c-k>"] = {
          function()
             vim.lsp.buf.signature_help()
          end,
@@ -145,7 +127,7 @@ M.lspconfig = {
          "   lsp definition type",
       },
 
-      ["<leader>ra"] = {
+      ["<leader>r"] = {
          function()
             vim.lsp.buf.rename.float()
          end,
@@ -166,7 +148,7 @@ M.lspconfig = {
          "   lsp references",
       },
 
-      ["<leader>f"] = {
+      ["ge"] = {
          function()
             vim.diagnostic.open_float()
          end,
@@ -180,7 +162,7 @@ M.lspconfig = {
          "   goto prev",
       },
 
-      ["d]"] = {
+      ["]d"] = {
          function()
             vim.diagnostic.goto_next()
          end,
@@ -228,20 +210,17 @@ M.nvimtree = {
 
    n = {
       -- toggle
-      ["<C-n>"] = { "<cmd> NvimTreeToggle <CR>", "   toggle nvimtree" },
-
-      -- focus
-      ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "   focus nvimtree" },
+      ["<leader>n"] = { "<cmd> NvimTreeToggle <CR>", "   toggle nvimtree" },
    },
 }
 
 M.telescope = {
    n = {
       -- find
-      ["<leader>ff"] = { "<cmd> Telescope find_files <CR>", "  find files" },
-      ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "  find all" },
-      ["<leader>fw"] = { "<cmd> Telescope live_grep <CR>", "   live grep" },
-      ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", "  find buffers" },
+      ["<c-p>"] = { "<cmd> Telescope find_files <CR>", "  find files" },
+      ["<leader>ff"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "  find all" },
+      ["<c-f>"] = { "<cmd> Telescope live_grep <CR>", "   live grep" },
+      ["<leader>b"] = { "<cmd> Telescope buffers <CR>", "  find buffers" },
       ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "  help page" },
       ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "   find oldfiles" },
       ["<leader>tk"] = { "<cmd> Telescope keymaps <CR>", "   show keys" },
