@@ -1,0 +1,6 @@
+services:
+  nv:
+    build: .
+    image: nv
+    stdin_open: true
+    tty: true
