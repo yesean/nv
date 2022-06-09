@@ -112,6 +112,11 @@ local plugins = {
          require("plugins.configs.others").better_escape()
       end,
    },
+   ["jose-elias-alvarez/null-ls.nvim"] = {
+      config = function()
+         require "plugins.configs.null-ls"
+      end,
+   },
 
    -- load luasnips + cmp related in insert mode only
 
