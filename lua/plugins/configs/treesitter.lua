@@ -5,10 +5,7 @@ if not present then
 end
 
 local options = {
-   ensure_installed = {
-      "lua",
-      "vim",
-   },
+   ensure_installed = { "python", "lua", "typescript", "go", "rust", "cpp", "c", "java" },
    highlight = {
       enable = true,
       use_languagetree = true,
