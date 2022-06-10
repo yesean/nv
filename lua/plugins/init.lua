@@ -99,19 +99,6 @@ local plugins = {
       end,
    },
 
-   ["ray-x/lsp_signature.nvim"] = {
-      after = "nvim-lspconfig",
-      config = function()
-         require("plugins.configs.others").signature()
-      end,
-   },
-
-   ["max397574/better-escape.nvim"] = {
-      event = "InsertCharPre",
-      config = function()
-         require("plugins.configs.others").better_escape()
-      end,
-   },
    ["jose-elias-alvarez/null-ls.nvim"] = {
       config = function()
          require "plugins.configs.null-ls"
@@ -120,16 +107,16 @@ local plugins = {
 
    -- load luasnips + cmp related in insert mode only
 
-   ["rafamadriz/friendly-snippets"] = {
-      module = "cmp_nvim_lsp",
-      event = "InsertEnter",
-   },
-
    ["hrsh7th/nvim-cmp"] = {
-      after = "friendly-snippets",
+      event = { "InsertEnter", "CmdlineEnter" },
       config = function()
          require "plugins.configs.cmp"
       end,
+   },
+
+   ["rafamadriz/friendly-snippets"] = {
+      module = "cmp_nvim_lsp",
+      after = "nvim-cmp",
    },
 
    ["L3MON4D3/LuaSnip"] = {
@@ -141,23 +128,35 @@ local plugins = {
    },
 
    ["saadparwaiz1/cmp_luasnip"] = {
-      after = "LuaSnip",
+      after = "nvim-cmp",
    },
 
    ["hrsh7th/cmp-nvim-lua"] = {
-      after = "cmp_luasnip",
+      after = "nvim-cmp",
    },
 
    ["hrsh7th/cmp-nvim-lsp"] = {
-      after = "cmp-nvim-lua",
+      after = "nvim-cmp",
    },
 
    ["hrsh7th/cmp-buffer"] = {
-      after = "cmp-nvim-lsp",
+      after = "nvim-cmp",
    },
 
    ["hrsh7th/cmp-path"] = {
-      after = "cmp-buffer",
+      after = "nvim-cmp",
+   },
+
+   ["hrsh7th/cmp-nvim-lsp-signature-help"] = {
+      after = "nvim-cmp",
+   },
+
+   ["hrsh7th/cmp-cmdline"] = {
+      after = "nvim-cmp",
+   },
+
+   ["dmitmel/cmp-cmdline-history"] = {
+      after = "nvim-cmp",
    },
 
    -- misc plugins

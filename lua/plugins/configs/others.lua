@@ -23,24 +23,6 @@ M.autopairs = function()
    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 end
 
-M.better_escape = function()
-   local present, escape = pcall(require, "better_escape")
-
-   if not present then
-      return
-   end
-
-   local options = {
-      mapping = { "jk" }, -- a table with mappings to use
-      timeout = vim.o.timeoutlen,
-      clear_empty_lines = false, -- clear line after escaping if there is only whitespace
-      keys = "<Esc>",
-   }
-
-   options = load_override(options, "max397574/better-escape.nvim")
-   escape.setup(options)
-end
-
 M.blankline = function()
    local present, blankline = pcall(require, "indent_blankline")
 
@@ -132,35 +114,6 @@ M.luasnip = function()
    luasnip.config.set_config(options)
 
    require("luasnip.loaders.from_vscode").lazy_load()
-end
-
-M.signature = function()
-   local present, lsp_signature = pcall(require, "lsp_signature")
-
-   if not present then
-      return
-   end
-
-   local options = {
-      bind = true,
-      doc_lines = 0,
-      floating_window = true,
-      fix_pos = true,
-      hint_enable = true,
-      hint_prefix = " ",
-      hint_scheme = "String",
-      hi_parameter = "Search",
-      max_height = 22,
-      max_width = 120, -- max_width of signature floating_window, line will be wrapped if exceed max_width
-      handler_opts = {
-         border = "single", -- double, single, shadow, none
-      },
-      zindex = 200, -- by default it will be on top of all floating windows, set to 50 send it to bottom
-      padding = "", -- character to pad on left and right of signature can be ' ', or '|'  etc
-   }
-
-   options = load_override(options, "ray-x/lsp_signature.nvim")
-   lsp_signature.setup(options)
 end
 
 M.lsp_handlers = function()

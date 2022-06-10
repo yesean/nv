@@ -92,6 +92,7 @@ local options = {
       { name = "buffer" },
       { name = "nvim_lua" },
       { name = "path" },
+      { name = "nvim_lsp_signature_help" },
    },
 }
 
@@ -99,3 +100,19 @@ local options = {
 options = require("core.utils").load_override(options, "hrsh7th/nvim-cmp")
 
 cmp.setup(options)
+
+cmp.setup.cmdline(":", {
+   mapping = cmp.mapping.preset.cmdline(),
+   sources = {
+      { name = "cmdline" },
+      { name = "cmdline_history" },
+   },
+})
+
+cmp.setup.cmdline("/", {
+   mapping = cmp.mapping.preset.cmdline(),
+   sources = {
+      { name = "buffer" },
+      { name = "cmdline_history" },
+   },
+})
